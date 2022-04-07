@@ -13,12 +13,12 @@ def convert_str_to_list(f_string):
 
 #---------main-----------
 ticker_str = input("Please enter ticker symbols seperated by spaces: ")
-
+user_name = input("Please enter database user: ")
+paswd = input("Please enter password: ")
 ticker_list = []
 for ticker in ticker_str.split(' '):
     ticker_list.append(ticker)
 
-#ticker_list = ['AAPL', 'TSLA', 'MSFT', 'FB', 'NVDA']
 ticker_dic = {}
 
 #converting all csv to string
@@ -32,7 +32,7 @@ for ticker in ticker_list:
     ticker_dic[ticker] = f_list
 
 #connecting to mysql
-db = pymysql.connect(host = 'localhost', user ='root', password ='', db = 'test')
+db = pymysql.connect(host = 'localhost', user =user_name, password =paswd, db = 'test')
 cursor = db.cursor()
 #creating sql queries
 query_create_table = "CREATE TABLE {} ( symbol varchar(4), dateID varchar(8) PRIMARY KEY NOT NULL, open float(8,2), high float(8,2), low float(8,2), close float(8,2), vol int(8));"
