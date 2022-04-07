@@ -4,7 +4,7 @@ import pandas as pd
 import csv
 import datetime
 import time
-
+import os
 
 def checkRequest(data):
   if data['empty']:
@@ -17,8 +17,8 @@ def get_stock_data_to_csv(ticker_list):
 
     for ticker in ticker_list:
         price_url = "https://api.tdameritrade.com/v1/marketdata/{}/pricehistory".format(ticker)
-        api_key = "EXDEQZTLBS2PNWXDDJ9AOJHPX15WSSRI"
-
+        
+        api_key = os.environ['API_KEY']
         payload = {'apikey':api_key,
            'periodType':'year',
            'frequencyType':'daily',
